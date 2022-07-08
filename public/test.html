@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="code">
+            <let data-name="a">2</let>
+            <let data-name="b">3</let>
+            <let data-name="c">
+                <ref>a</ref>
+            </let>
+            <log>
+                <ref>a</ref>
+                <ref>b</ref>
+                <ref>c</ref>
+            </log>
+            <let data-name="c">
+                <add>
+                    <ref>a</ref>
+                    <ref>b</ref>
+                </add>
+            </let>
+            <let data-name="c">
+                <sub>
+                    <ref>c</ref>
+                    <ref>a</ref>
+                </sub>
+            </let>
+            <log>
+                <ref>c</ref>
+            </log>
+            <free data-name="b"></free>
+            <func data-name="my-func">
+                <args>
+                    <let data-name="msg">Hi mom!</let>
+                </args>
+                <commands>
+                    <log>
+                        <ref>msg</ref>
+                    </log>
+                </commands>
+            </func>
+            <my-func></my-func>
+        </div>
+    </body>
+    <script src="build/main.js"></script>
+    <style>
+        #code {
+            display: none;
+        }
+    </style>
+</html>
