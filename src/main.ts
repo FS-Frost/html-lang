@@ -1,31 +1,53 @@
-const KEYWORD_MAP = new Map();
+type Keyword = (
+    "LET" |
+    "FREE" |
+    "ADD" |
+    "SUB" |
+    "LOG" |
+    "REF"
+);
 
-const KEYWORD_LET = "LET";
-KEYWORD_MAP.set(KEYWORD_LET, KEYWORD_LET);
+let _keyWordCount = 0;
+const KEYWORD_LET: Keyword = "LET";
+_keyWordCount++;
+const KEYWORD_FREE: Keyword = "FREE";
+_keyWordCount++;
+const KEYWORD_ADD: Keyword = "ADD";
+_keyWordCount++;
+const KEYWORD_SUB: Keyword = "SUB";
+_keyWordCount++;
+const KEYWORD_LOG: Keyword = "LOG";
+_keyWordCount++;
+const KEYWORD_REF: Keyword = "REF";
+_keyWordCount++;
 
-const KEYWORD_FREE = "FREE";
-KEYWORD_MAP.set(KEYWORD_FREE, KEYWORD_FREE);
+const newKeyWordMap = () => {
+    const keywordMap = new Map<string, boolean>([
+        [KEYWORD_LET, true],
+        [KEYWORD_FREE, true],
+        [KEYWORD_ADD, true],
+        [KEYWORD_SUB, true],
+        [KEYWORD_LOG, true],
+        [KEYWORD_REF, true],
+    ]);
 
-const KEYWORD_ADD = "ADD";
-KEYWORD_MAP.set(KEYWORD_ADD, KEYWORD_ADD);
+    if (keywordMap.size != _keyWordCount) {
+        throw `ERROR: keyword map size (${keywordMap.size}) mismatch with defined keywords (${_keyWordCount})`;
+    }
 
-const KEYWORD_SUB = "SUB";
-KEYWORD_MAP.set(KEYWORD_SUB, KEYWORD_SUB);
-
-const KEYWORD_LOG = "LOG";
-KEYWORD_MAP.set(KEYWORD_LOG, KEYWORD_LOG);
-
-const KEYWORD_REF = "REF";
-KEYWORD_MAP.set(KEYWORD_REF, KEYWORD_REF);
+    return keywordMap;
+};
 
 type StackItem = null | string | number;
 type Stack = Map<string, StackItem>;
+
+const KEYWORD_MAP = newKeyWordMap();
 
 function main(): void {
     const code = document.querySelector("#code");
 
     if (code == null) {
-        console.error("no code node to parse.");
+        console.error("no code node to parse");
         return;
     }
 
