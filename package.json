@@ -8,6 +8,6 @@
     },
     "scripts": {
         "dev": "node_modules/.bin/tsc -w",
-        "build": "rm -R -f public/build && node_modules/.bin/tsc"
+        "build": "rm -R -f docs/build && node_modules/.bin/tsc"
     }
 }
